@@ -1,0 +1,778 @@
+﻿<!DOCTYPE html 5>
+<html lang="pt-br">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Dancing+Script:wght@400..700&family=Delius&family=Gorditas:wght@400;700&family=Luckiest+Guy&family=Prata&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="https://images.vexels.com/media/users/3/354790/isolated/preview/4887affd174ff0a70c4942aa38fc9a5b-meu-desenho-de-coracao-de-amor.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="UTF-8" content="width=device-width, initial-scale=1.0">
+    <title>Dia dos Namorados</title>
+    <style>
+        body {
+            font-family: 'Prata', sans-serif;
+            background-color: #3e5c4a;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-y: scroll;
+        }
+        .prata-regular {
+            font-family: "Prata", serif;
+            font-style: normal;
+            font-weight: 20;
+        }
+        .Texto {
+            font-family: "Delius", cursive;
+            font-weight: 400;
+            font-style: normal;
+            color: #012701;
+        }
+
+        .fonte-especial {
+            color: #012701;
+            font-family: "Cookie", cursive;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .photo a {
+            display: block;
+            cursor: pointer;
+        }
+        #entrada {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(https://i.postimg.cc/4xz3vc0k/pngtree-red-and-white-flowers-dark-background-image-17216872-removebg-preview.png);
+            background-position: flex;
+            background-size:cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transition: opacity 0.5s ease;
+        }
+
+        #entrada button {
+            height: auto;
+            width: auto;
+            padding: 20px 40px;
+            font-size: 70px;
+            background: linear-gradient(to right, #ff7b7b, #962b2b) ;
+            border: 2px black;
+            color: #e7c5ee;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        #entrada button:hover {
+            background: linear-gradient(to right, #962b2b, #ff7b7b) ;
+        }
+        
+        .entrada-botoes {
+            display: inline-block;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 25px;
+        }
+        #nao-btn.sumir-suave {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* Conteúdo principal escondido inicialmente */
+        #conteudo {
+            display: none;
+            padding: 0px;
+        }
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(https://i.postimg.cc/tJHqnM40/foto-de-fundo-removebg-preview-removebg-preview.png);
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            flex-direction: column;
+            padding-top: 30px;
+            border-radius: 30px;
+            
+        }
+        .paper {
+            background-color: #bfb7b7;
+            width: 800px;
+            height: auto;
+            max-width: 90%;
+            margin-bottom: 50px;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(250, 0, 0, 0.774);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .header {
+            font-family: "Gorditas", serif;
+            font-weight: 400;
+            font-style: normal;
+            text-align: center;
+            color: #012701;
+            margin-bottom: 30px;
+            font-size: 2.5em; 
+        }
+        .counter {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 50px;
+            gap: 20px;
+	}
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #4b3d3d;
+            color: #ffffff;
+            font-size: 2.5em;
+            padding: 20px;
+            width: 120px;
+            height: 120px;      /* aumenta um pouco para caber o label */
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .time-label {
+            font-size: 0.4em;
+            color: #acabab;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }             
+        .carousel-container {
+            position: relative;
+            width: 80%;
+            margin: 0 auto;
+            overflow: hidden;
+            background: linear-gradient(to right, #c75555, #ffffff) ;
+            border: 3px solid #000000; /* Cor e espessura da borda */
+            box-shadow: #f30505;
+            border-radius: 20px;
+            padding: 10px; /* Espaço interno entre a borda e a imagem */
+            display: inline-block; /* Garante que a borda se encaixe certinho na imagem */
+        }
+        .carousel-item img {
+            border: 3px solid #7a0602;
+            background-image: url(https://png.pngtree.com/thumb_back/fw800/back_our/20200817/ourmid/pngtree-dark-background-beautiful-background-material-png-image_393184.jpg);
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            padding: 1%;
+        }
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel img {
+            width: auto;
+            height: auto;
+            max-height: 700px;
+            object-fit: contain;
+            padding:0.9%;
+            border-radius: 20px;
+            margin: 0 7px;
+            min-width: 95%;
+            box-shadow: 0px 4px 10px rgb(132, 0, 255); /* Aqui está corrigido o shadow */
+        }
+        .caixa-central {
+            background-color: #bfb7b7;/* tom suave */
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(250, 0, 0, 0.774);
+            display: flex;
+            border:3px #121212;
+            color:#012701;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: red;
+            font-size: 2em;
+            box-shadow: #121212;
+            padding: 20px;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 50%;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;    
+        }
+        .photo {
+            background: linear-gradient(to bottom right, #f1a193,#ffbbaf,#a1fa79, #91b97f);
+            width: 70%;
+            height: 30%;
+            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+            border-color: #121212;
+            overflow: hidden;
+            margin: 20px auto;
+            border-radius: 20px;
+            pointer-events: all;
+        }
+
+        .photo img {
+            display: block;
+            margin: auto;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+        .lupa {
+            position: relative;
+        }
+
+        #image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            align-items: center;
+        }
+
+        .lens {
+            position: absolute;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+            pointer-events: none;
+            display: none;
+            box-shadow: 0 0 10px rgba(255,255,255,0.6);
+            z-index: 10;
+        }
+        .lens img {
+            position: absolute;
+            transform: scale(2); /* nivel de zoom */
+            transform-origin: top left;
+        }        
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 3s ease;
+        }
+
+        .fade-up.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .music-player {
+            margin-top: 20px;
+        }
+        .music-player audio {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 20px rgba(14, 13, 13, 0.5);
+        }
+        .flor {
+            position: absolute;
+            bottom: -80px;
+            font-size: 15px;
+            animation: subir 5s  infinite;
+            opacity: 0.8;
+        }
+        .section {
+            scroll-snap-align: start;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            text-align: center;
+        }
+        .section-translate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }        
+        .scroll-container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scrollbar-width: none;       /* Firefox */
+            -ms-overflow-style: none;
+        }
+        @keyframes mudarCor {
+            0% { color: rgb(233, 81, 81); }
+            25% { color: rgb(90, 243, 90); }
+            50% { color: rgb(75, 123, 255); }
+            75% { color: rgb(188, 60, 247); }
+            100% { color: rgb(233, 81, 81); }
+        }
+
+        .cor-animada {
+            animation: mudarCor 4s infinite;
+            font-weight: bold;
+         }
+        @keyframes subir {
+            0% {
+                transform: translateY(0);
+                opacity: 0.8;
+                }
+            100% {
+            transform: translateY(-110vh);
+            opacity: 0;
+            }
+        }    
+    </style>
+</head>
+<body>
+
+<div id="entrada">
+    <div class="caixa-central">
+        <h1 class="fonte-especial" style="text-align: center; color:#012701; font-size: 40px;">Um site produzido com carinho de Douglas Eduardo F. Andrade❤️ </h1>
+        <p class="texto" style="font-size: 22px;">Você aceita ver uma surpresa diferente do normal??</p>
+        <div class="entrada-botoes">
+            <button onclick="entrar()">Sim</button>
+            <button id="nao-btn" onclick="sumir()">Não</button>
+        </div>
+    </div>
+</div>
+</div>
+<div id="conteudo">
+<div class="scroll-container">
+    <section class="section" height="100%">
+        <div class="background"></div>
+
+        <div class="container" height="100%">
+            <div class="paper">
+                <div class="flor" style="left: 10%;">🌹</div>
+                    <div class="flor" style="left: 15%; animation-delay: 3s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 75%; animation-delay: 1.4s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 25%; animation-delay: 2.2s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 32%; animation-delay: 1s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 40%; animation-delay: 3.2s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 75%; animation-delay: 6.3s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 80%; animation-delay: 2s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 90%; animation-delay: 4s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 5%; animation-delay: 6s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 30%; animation-delay: 10s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 20%; animation-delay: 7s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 10%; animation-delay: 3s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 12%; animation-delay: 5s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                <div class="header fade-up">
+                    <h1 class="fonte-especial fade-up" style="margin-right: 10px;" >Site dedicado a<br>❤️Karina Aparecida❤️ </h1> 
+                    <p class="texto fade-up" style="font-size:22px">Desde: 17/12/2023</p>
+                    <p class="texto fade-up">Estamos compartilhamos momentos há:<p>
+                </div>
+                <div class="prata-regular fade-up">
+                    <div class="counter" id="counter">
+                        <div class="time-unit">
+                            <div id="years">00</div>
+                            <div class="time-label">Anos</div>
+                        </div>
+                        <div class="time-unit">
+                            <div id="months">00</div>
+                            <div class="time-label">Meses</div>
+                        </div>
+                        <div class="time-unit">
+                            <div id="days">00</div>
+                            <div class="time-label">Dias</div>
+                        </div>
+                        <div class="time-unit">
+                            <div id="hours">00</div>
+                            <div class="time-label">Horas</div>
+                        </div>
+                        <div class="time-unit">
+                            <div id="minutes">00</div>
+                            <div class="time-label">Minutos</div>
+                        </div>
+                        <div class="time-unit">
+                            <div id="seconds">00</div>
+                            <div class="time-label">Segundos</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="texto fade-up">
+                    <p style="font-size: 22px;">❤️ Eu amo passar cada segundo com você ❤️</p>
+                    <p style="font-size: 14px;color: #667a66;"> ↓ Continue deslizando a página para baixo ↓</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="section" height="100%">
+        <div class="background"></div>
+
+        <div class="container" height="100%">
+            <div class="paper">
+                <div class="flor" style="left: 10%;">🌹</div>
+                    <div class="flor" style="left: 15%; animation-delay: 3s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 75%; animation-delay: 1.4s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 25%; animation-delay: 2.2s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 32%; animation-delay: 1s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 40%; animation-delay: 3.2s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 75%; animation-delay: 6.3s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 80%; animation-delay: 2s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 90%; animation-delay: 4s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 5%; animation-delay: 6s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 30%; animation-delay: 10s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 20%; animation-delay: 7s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 10%; animation-delay: 3s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 12%; animation-delay: 5s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                <div class="header fade-up">
+                    <h1 style="font-size: 30px;">Que tal uma música? Aprecie esse momento!</h1>
+                    <p class="texto"style="font-size: 21;">Vou dar duas opções de nossas musicas e uma que eu escuto muito com você❤️</p>
+                </div>
+                <div class="music-player">
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1atdNj5crEBnrTvV9AI3WD?utm_source=generator&theme=0" width="100%" height="270px" frameBorder="0" allowfullscreen="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>             
+                    <br>
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1rMcQF59UMomlc0HJy9j5W?utm_source=generator&theme=0" width="100%" height="270px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    <br>
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1hFZAmdDfDtS83ycBMPVnc?utm_source=generator&theme=0" width="100%" height="270px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+                <div class="texto fade-up">
+                    <h1 class="texto" style="font-size: 21px;">Nosso gosto musical é diferente da maioria, somos originais e eu amo isso❤️</h1>
+                    <p style="font-size: 14px;color:#667a66;"> ↓ Continue deslizando a página para baixo ↓</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section" height="100%">
+        <div class="background"></div>
+
+        <div class="container" height="100%">
+            <div class="paper">
+                <div class="flor" style="left: 10%;">🌹</div>
+                    <div class="flor" style="left: 15%; animation-delay: 3s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 75%; animation-delay: 1.4s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 25%; animation-delay: 2.2s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 32%; animation-delay: 1s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 40%; animation-delay: 3.2s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 75%; animation-delay: 6.3s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 80%; animation-delay: 2s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 90%; animation-delay: 4s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 5%; animation-delay: 6s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 30%; animation-delay: 10s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 20%; animation-delay: 7s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 10%; animation-delay: 3s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 12%; animation-delay: 5s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>                
+                <div class="header fade-up">
+                    <h1 class="fade-up" style="font-size: 30px;"> Os momentos com você são incríveis, aqui estão alguns desses momentos que tivemos juntos💫</h1>
+                </div>
+                    <div class="carousel-container">
+                        <button class="carousel-button prev" onclick="moveCarousel(-1)">&#10094;</button>
+                            <div class="carousel-item">
+                                <div class="carousel" id="carousel">
+                                <img src="https://i.postimg.cc/7LSJ0kwx/Whats-App-Image-2025-06-03-at-15-40-28.jpg" alt="Foto 1">  
+                                <img src="https://i.postimg.cc/3RgqsdhP/59374345954.png" alt="Foto 3">                            
+                                <img src="https://i.postimg.cc/wvHykGjD/Whats-App-Image-2025-06-03-at-15-40-29.jpg" alt="Foto 3">                                                        
+                                <img src="https://i.postimg.cc/W3nDYwdC/Whats-App-Image-2025-06-03-at-15-41-50-1.jpg" alt="Foto 4">
+                                <img src="https://i.postimg.cc/c453NhFN/Whats-App-Image-2025-06-03-at-15-39-06-1.jpg" alt="Foto 5">                                                    
+                                <img src="https://i.postimg.cc/Gm8y3DfT/Whats-App-Image-2025-06-03-at-15-40-29-1.jpg"  alt="Foto 6">
+                                <img src="https://i.postimg.cc/cHHZZRDV/Whats-App-Image-2025-06-03-at-19-27-32.jpg"  alt="Foto 7">                                                        
+                                <img src='https://i.postimg.cc/jjDJ57kJ/Whats-App-Image-2025-06-03-at-15-33-27.jpg' alt='foto 8'>
+                                <img src="https://i.postimg.cc/hGNQ7tHZ/Whats-App-Image-2025-06-03-at-15-39-07-1.jpg"  alt="Foto 9">
+                                <img src="https://i.postimg.cc/sfYGvyKK/Whats-App-Image-2025-06-03-at-15-39-07-3.jpg"  alt="Foto 10">
+                                <img src="https://i.postimg.cc/DytffF4h/Whats-App-Image-2025-06-03-at-15-39-06-2.jpg"  alt="Foto 11">
+                                <img src="https://i.postimg.cc/6qt3d2zc/Whats-App-Image-2025-06-03-at-15-39-08.jpg"  alt="Foto 12">
+                                <img src="https://i.postimg.cc/K8z1qTbs/Whats-App-Image-2025-06-03-at-15-39-08-1.jpg"  alt="Foto 13">
+                                <img src="https://i.postimg.cc/9QnrvfFX/Whats-App-Image-2025-06-03-at-15-39-08-2.jpg"  alt="Foto 14">
+                                <img src="https://i.postimg.cc/wvK3jbmS/Whats-App-Image-2025-06-03-at-15-39-08-3.jpg"  alt="Foto 15">
+                                <img src="https://i.postimg.cc/DZq0JdQm/Whats-App-Image-2025-06-03-at-15-39-08-4.jpg"  alt="Foto 16">
+                                <img src="https://i.postimg.cc/rFyss4DF/Whats-App-Image-2025-06-03-at-15-39-09.jpg"  alt="Foto 17">
+                                <img src="https://i.postimg.cc/s2tdFkhZ/33417172968.png"  alt="Foto 18">
+                                <img src="https://i.postimg.cc/KcD4mfvH/Whats-App-Image-2025-06-03-at-15-39-09-2.jpg"  alt="Foto 20">
+                                <img src="https://i.postimg.cc/TYkwDPbj/Whats-App-Image-2025-06-03-at-15-39-09-3.jpg"  alt="Foto 21">
+                                <img src="https://i.postimg.cc/Z525wDVC/Whats-App-Image-2025-06-03-at-15-39-10.jpg"  alt="Foto 22">
+                                <img src="https://i.postimg.cc/W4ZbC6HS/Whats-App-Image-2025-06-03-at-15-39-10-1.jpg"  alt="Foto 23">
+                                <img src="https://i.postimg.cc/bwsvHj07/Whats-App-Image-2025-06-03-at-15-39-10-2.jpg"  alt="Foto 24">
+                                <img src="https://i.postimg.cc/zvzzLmXP/Whats-App-Image-2025-06-03-at-15-40-29-2.jpg"  alt="Foto 25">
+                                <img src="https://i.postimg.cc/xTFfd4rt/Whats-App-Image-2025-06-03-at-15-40-29-3.jpg"  alt="Foto 26">
+                                <img src="https://i.postimg.cc/MZ5ZCG9k/Whats-App-Image-2025-06-03-at-15-40-29-4.jpg"  alt="Foto 27">
+                                <img src="https://i.postimg.cc/X7vN40Pr/Whats-App-Image-2025-06-03-at-15-40-30.jpg"  alt="Foto 28">
+                                <img src="https://i.postimg.cc/0Qfx1tdG/Whats-App-Image-2025-06-03-at-15-41-50.jpg"  alt="Foto 29">
+                                <img src="https://i.postimg.cc/vm5b384N/Whats-App-Image-2025-06-03-at-15-41-50-2.jpg"  alt="Foto 30">
+                                <img src="https://i.postimg.cc/fLZZF4XT/Whats-App-Image-2025-06-03-at-15-41-50-3.jpg"  alt="Foto 31">
+                                <img src="https://i.postimg.cc/L58S9zNc/Whats-App-Image-2025-06-03-at-15-41-51.jpg"  alt="Foto 32">
+                                <img src="https://i.postimg.cc/pVsx06dR/Whats-App-Image-2025-06-03-at-19-27-41.jpg"  alt="Foto 33">
+                            </div>
+                            <button class="carousel-button next" onclick="moveCarousel(1)">&#10095;</button>
+                        </div>                        
+                    </div>
+
+                <div class="header fade-up">
+                    <h1 class="fade-up"style="font-size: 25px;"> Cada momento foi único e não importa oque você diga, em todas as fotos você estava e continua linda, eu te amo❤️</h1>
+                    <p class="texto" style="font-size: 14px;color:#667a66;"> ↓ Continue deslizando a página para baixo ↓</p>
+                </div>        
+            </div>
+        </div>
+    </section>
+    <section class="section" height="100%">
+        <div class="background"></div>
+
+        <div class="container" height="100%">
+            <div class="paper">
+                <div class="flor" style="left: 10%;">🌹</div>
+                    <div class="flor" style="left: 15%; animation-delay: 3s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 75%; animation-delay: 1.4s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 25%; animation-delay: 2.2s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 32%; animation-delay: 1s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 40%; animation-delay: 3.2s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 75%; animation-delay: 6.3s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 80%; animation-delay: 2s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 90%; animation-delay: 4s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 5%; animation-delay: 6s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 30%; animation-delay: 10s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 20%; animation-delay: 7s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 10%; animation-delay: 3s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 12%; animation-delay: 5s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                <div class="texto fade-up">
+                    <h1 class="header" style="font-size: 30px;"> Isso é um "Vale Encontro", escolha somente um:</h1> <p style="font-size: 22px; text-align: left;">Precioso + pastel;<br> Açaícaro; -- 2 complementos especiais e 2 normais --<br> Sorvetarus; -- por peso ou não --<br> Milkshaketaru; -- Milkmoo ou outro de valor próximo--<br>Lanche gordela;</p>
+                    <p class="header" style="font-size: 25px; text-align: left;">Você pode escolher UM deles, escolha sabiamente!</p><p style="font-size: 16px; text-align: left;">Eu também irei participar obiviamente.</p>
+                </div>
+                    <div class="carousel-container">
+                        <button class="carousel-button prev" onclick="moveCarousel2(-1,'carrosel2')">&#10094;</button>
+                            <div class="carousel-item">
+                                <div class="carousel" id="carousel2">
+                                <img src="https://i.pinimg.com/originals/9f/48/08/9f4808c5de41e8ad46825838ba884e96.jpg" alt="Foto 3">  
+                                <img src="https://img.freepik.com/vetores-premium/receita-de-tigela-de-acai_673247-24.jpg" alt="Foto 3">                            
+                                <img src="https://i.pinimg.com/736x/e1/e7/a8/e1e7a8a339c1efc4808d2e4607d8db4b.jpg" alt="Foto 3">                                                                                                             
+                                <img src="https://img.freepik.com/premium-vector/strawberry-milkshake-vector_131574-185.jpg" alt="Foto 3">
+                                <img src="https://st2.depositphotos.com/2885805/6220/v/450/depositphotos_62207855-stock-illustration-beef-hamburger-background.jpg" alt="Foto 3">
+                                </img>
+                            </div>
+                            <button class="carousel-button next" onclick="moveCarousel2(1,'carrosel2')">&#10095;</button>
+                        </div>                        
+                    </div>
+                
+                <div class="header fade-up">
+                    <p class="texto" style="font-size: 16px; text-align: center;">Imagem meramente ilustrativa, avise ao seu namorado qual você quer😅</p>
+                    <h1 style="font-size: 25px;"> Cada um desses alimentos tem seu apelido carinhoso, amo saber como nos divertimos lembrando isso❤️</h1>
+                    <p class="texto" style="font-size: 14px;color:#667a66;"> ↓ Continue deslizando a página para baixo ↓</p>
+                </div>        
+            </div>
+        </div>
+    </section>
+    <section class="section" height="100%">
+        <div class="background"></div>
+
+        <div class="container" height="100%">
+            <div class="paper">
+                    <div class="flor" style="left: 10%;">🌹</div>
+                    <div class="flor" style="left: 15%; animation-delay: 3s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 75%; animation-delay: 1.4s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 25%; animation-delay: 2.2s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 32%; animation-delay: 1s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 40%; animation-delay: 3.2s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 75%; animation-delay: 6.3s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 80%; animation-delay: 2s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 90%; animation-delay: 4s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 5%; animation-delay: 6s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 30%; animation-delay: 10s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 20%; animation-delay: 7s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 10%; animation-delay: 3s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 12%; animation-delay: 5s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="header fade-up">
+                        <h1 class="fade-up" style="font-size: 30px;"><span class="cor-animada"> Nossa Sinastria amorosa <br>♐Sagitáriano e Capricórniana♑</span></h1>
+                    </div>
+                    <p class="fade-up" style="font-size: 20px; color:#667a66">↓ Aperte a imagem para ler↓</p>
+                    <div class="photo" style="position: center;">
+                    <a href="https://www.visaoastral.com.br/resultado-sinastria?idSinastria=39daa765-6851-4d63-8339-c00649ad705e" target="_blank">
+                        <img src="https://i.postimg.cc/sxd6J7y6/image.png" alt="Sinastria">
+                    </a>
+                    </div>
+                     <div class="header fade-up">
+                        <p class="fade-up" style="font-size: 30px;"> ✨Nossos astros são próximos e se completam bem, nossas dificuldades serão curadas✨ </p>
+                    <br>
+                    <p class="texto" style="font-size: 14px;color:#667a66;"> ↓ Continue deslizando a página para baixo ↓</p> 
+                    </div>
+            </div>
+        </div>
+    </section>    
+    <section class="section" height="100%">
+        <div class="background"></div>
+
+        <div class="container" height="100%">
+            <div class="paper">
+                <div class="flor" style="left: 10%;">🌹</div>
+                    <div class="flor" style="left: 15%; animation-delay: 3s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 75%; animation-delay: 1.4s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 25%; animation-delay: 2.2s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 32%; animation-delay: 1s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 40%; animation-delay: 3.2s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 75%; animation-delay: 6.3s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 80%; animation-delay: 2s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 90%; animation-delay: 4s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 5%; animation-delay: 6s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 30%; animation-delay: 10s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                    <div class="flor" style="left: 20%; animation-delay: 7s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 10%; animation-delay: 3s;"><height 60px>🌹</height> </div>
+                    <div class="flor" style="left: 12%; animation-delay: 5s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
+                <div class="header fade-up">
+                    <h1 class="fonte-especial fade-up">Eu amo você por inteira, toda sua personalidade me atrai ❤️</h1>
+                        <p class="fade-up">↓ Pode abrir a carta ↓</p>                  
+                    <div class="photo">
+                        <a href="https://arkkepark.github.io/Carta-para-Karina/" target="_blank">
+                        <img src= "https://i.postimg.cc/DyYqdPjJ/Carta-fechada-v2.png" onmousedown='this.src="https://i.postimg.cc/qBxwnnHy/Carta-aberta.png"'></a> <!-- Substitua pelo caminho da sua foto -->
+                    </div>
+                    <div class="texto fade-up">
+                        <p style="font-size:20px;">Esse é o fim desse site, espero que tenha gostado!</p>
+                        <br>
+                        <p style="font-size: 14px;color:#667a66;">Direito autoral de:<br> Douglas Eduardo Ferreira Andrade</p>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</div>
+
+    <script>
+        function entrar() {
+        document.getElementById("entrada").style.opacity = "0";
+        setTimeout(() => {
+            document.getElementById("entrada").style.display = "none";
+            document.getElementById("conteudo").style.display = "block";
+        }, 500); // mesmo tempo da transição no CSS
+        }
+        
+        function sumir() {
+        const botao = document.getElementById("nao-btn");
+        botao.classList.add("sumir-suave");
+        setTimeout(() => {
+            botao.textContent = "Óbivio que Sim"        
+            botao.classList.remove("sumir-suave")
+            botao.style.display = "inline";
+            botao.onclick = entrar;
+
+        // (opcional) Adiciona animação de entrada
+            botao.classList.add("entrar-suave");  
+        }, 500); // tempo correspondente à animação CSS
+        }
+        function entrar() {
+            document.getElementById("entrada").style.display = "none";
+            document.getElementById("conteudo").style.display = "block";
+        }
+        
+    
+    //contador de tempo
+
+        function updateCounter() {
+            const startDate = new Date('2023-12-17T00:00:00'); // Data de início
+            const currentDate = new Date();
+            const difference = currentDate - startDate;
+
+            const years = Math.floor(difference / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor(difference / (1000 * 60 * 60 * 24 * 30.44) % 12);
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24)) % 365;
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) % 24 ;
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)) % 60;
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000) % 60;
+
+            document.getElementById('years').innerText = years.toString().padStart(2, '0' );
+            document.getElementById('months').innerText = months.toString().padStart(2, '0');
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+        }
+
+        setInterval(updateCounter, 1000);
+
+        let currentIndex = 0;
+
+        function moveCarousel(direction) {
+            const carousel = document.getElementById("carousel");
+            const images = carousel.getElementsByTagName("img");
+            const totalImages = images.length;
+
+            currentIndex = (currentIndex + direction + totalImages) % totalImages;
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+        // Garantir ajuste ao redimensionar
+        window.addEventListener('resize', () => {
+            moveCarousel(0);
+        });
+        let currentIndex2 = 0;
+
+        function moveCarousel2(direction) {
+            const carousel = document.getElementById("carousel2");
+            const images = carousel.getElementsByTagName("img");
+            const totalImages = images.length;
+
+            currentIndex = (currentIndex + direction + totalImages) % totalImages;
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+        // Garantir ajuste ao redimensionar
+        window.addEventListener('resize', () => {
+            moveCarousel2(0);
+        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.2,
+        });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        //aqui
+        const lens = document.getElementById('lens');
+        const image = document.getElementById('image');
+        const lensImg = lens.querySelector('img');
+
+        function moveLens(e) {
+        const rect = image.getBoundingClientRect();
+        const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+        const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+
+        if (x < 0 || y < 0 || x > rect.width || y > rect.height) {
+            lens.style.display = "none";
+            return;
+        }
+
+        lens.style.display = "block";
+        lens.style.left = (x - 50) + "px";
+        lens.style.top = (y - 50) + "px";
+
+        lensImg.style.left = (-x * 2 + 50) + "px";
+        lensImg.style.top = (-y * 2 + 50) + "px";
+        }
+
+        document.getElementById('lupa').addEventListener('mousemove', moveLens);
+        document.getElementById('lupa').addEventListener('touchmove', moveLens);
+        document.getElementById('lupa').addEventListener('mouseleave', () => lens.style.display = "none");
+        document.getElementById('lupa').addEventListener('touchend', () => lens.style.display = "none");
+    </script>
+
+</body>
+</html>
