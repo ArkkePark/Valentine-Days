@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html 5>
+<!DOCTYPE html 5>
 <html lang="pt-br">
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -292,8 +292,58 @@
             width: 100%;
             max-width: 400px;
             border-radius: 20px;
-            box-shadow: 0px 0px 20px rgba(14, 13, 13, 0.5);
+            box-shadow: 0px 0px 20px rgba(102, 31, 31, 0.5);
         }
+        .music-card {
+            display: flex;
+            background: linear-gradient(to bottom right, #3b3b3b,#4d4c4c,#5a5a5a, #777777);
+            color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            margin-inline: auto;
+        }
+
+        .music-image {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .music-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 16px;
+        }
+
+        .music-caption {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .music-player iframe {
+            width: 100%;
+            height: 80px;
+            border-radius: 12px;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .music-card {
+            flex-direction: column;
+            }
+
+            .music-image {
+            width: 100%;
+            height: auto;
+            }
+        }
+
         .flor {
             position: absolute;
             bottom: -80px;
@@ -419,7 +469,7 @@
                     </div>
                 </div>
                 <div class="texto fade-up">
-                    <p style="font-size: 22px;">❤️ Eu amo cada segundo com você ❤️</p>
+                    <p style="font-size: 22px;">❤️ Eu amo passar cada segundo com você ❤️</p>
                     <p style="font-size: 14px;color: #667a66;"> ↓ Continue deslizando a página para baixo ↓</p>
                 </div>
 
@@ -450,12 +500,35 @@
                     <p class="texto"style="font-size: 21;">Vou dar duas opções de nossas musicas e uma que eu escuto muito com você❤️</p>
                 </div>
                 <div class="music-player">
-                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1atdNj5crEBnrTvV9AI3WD?utm_source=generator&theme=0" width="100%" height="270px" frameBorder="0" allowfullscreen="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>             
-                    <br>
-                    <iframe src="https://drive.google.com/file/d/1j5Ht5kjdcYbxv5KKFuergASqSNkCRaCJ/preview" width="100%" height="270px" frameBorder="0" allow="autoplay;clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                    <br>
-                    <br>
-                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1hFZAmdDfDtS83ycBMPVnc?utm_source=generator&theme=0" width="100%" height="270px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    <div class="music-card">
+                        <img src="https://akamai.sscdn.co/letras/360x360/albuns/a/c/7/7/2044601701779419.jpg" class="music-image" alt="Imagem da música 1">
+                        <div class="music-info">
+                            <div class="music-caption">💖 Quero dançar com você denovo... </div>
+                            <div class="music-player">
+                                <iframe src="https://drive.google.com/file/d/14mbvCeZ2oJ5Pgfhs5MmczcQM-S7XoNr0/preview" allow="autoplay"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="music-card">
+                        <img src="https://i.scdn.co/image/ab67616d0000b273d19cdfd27d04306ee5dbfeaa" class="music-image" alt="Imagem da música 2">
+                        <div class="music-info">
+                            <div class="music-caption">🥰 Essa música me faz lembrar que eramos só amigos antes, hoje quero você na minha vida toda!</div>
+                            <div class="music-player">
+                                <iframe src="https://drive.google.com/file/d/1j5Ht5kjdcYbxv5KKFuergASqSNkCRaCJ/preview" allow="autoplay"></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MÚSICA 3 -->
+                    <div class="music-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRte6SY4MZccjfDlHrRc5VFQsBJOqT1_TJPuw&s" class="music-image" alt="Imagem da música 3">
+                        <div class="music-info">
+                            <div class="music-caption">✨ No carro essa é uma das que eu mais gosto!</div>
+                            <div class="music-player">
+                                <iframe src="https://drive.google.com/file/d/1jFKlvm9JxN5bAccHif_uteiTBvl55a1p/preview" allow="autoplay"></iframe>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="texto fade-up">
                     <h1 class="texto" style="font-size: 21px;">Nosso gosto musical é diferente da maioria, somos originais e eu amo isso❤️</h1>
@@ -490,7 +563,6 @@
                         <button class="carousel-button prev" onclick="moveCarousel(-1)">&#10094;</button>
                             <div class="carousel-item">
                                 <div class="carousel" id="carousel">
-				<img src="https://i.postimg.cc/PqDPJXmj/Whats-App-Image-2025-05-28-at-14-08-07.jpg"  alt="Foto 20">
                                 <img src="https://i.postimg.cc/7LSJ0kwx/Whats-App-Image-2025-06-03-at-15-40-28.jpg" alt="Foto 1">  
                                 <img src="https://i.postimg.cc/3RgqsdhP/59374345954.png" alt="Foto 3">                            
                                 <img src="https://i.postimg.cc/wvHykGjD/Whats-App-Image-2025-06-03-at-15-40-29.jpg" alt="Foto 3">                                                        
@@ -555,7 +627,7 @@
                     <div class="flor" style="left: 10%; animation-delay: 3s;"><height 60px>🌹</height> </div>
                     <div class="flor" style="left: 12%; animation-delay: 5s;"><span><img src = https://static.vecteezy.com/system/resources/previews/017/373/161/non_2x/red-rose-flowers-realistic-set-with-different-colors-and-shapes-isolated-free-png.png height="70px"></span></div>
                 <div class="texto fade-up">
-                    <h1 class="header" style="font-size: 30px;"> Isso é um "Vale Encontro", escolha somente um:</h1> <p style="font-size: 22px; text-align: left;">Precioso + pastel;<br> Açaícaro, 2 complementos especiais e 2 normais;<br> Sorvetarus, por peso ou não;<br> Milkshaketaru, Milkmoo ou outro de valor próximo;<br>Lanche gordela;</p>
+                    <h1 class="header" style="font-size: 30px;"> Isso é um "Vale Encontro", escolha somente um:</h1> <p style="font-size: 22px; text-align: left;">Precioso + pastel;<br> Açaícaro; -- 2 complementos especiais e 2 normais --<br> Sorvetarus; -- por peso ou não --<br> Milkshaketaru; -- Milkmoo ou outro de valor próximo--<br>Lanche gordela;</p>
                     <p class="header" style="font-size: 25px; text-align: left;">Você pode escolher UM deles, escolha sabiamente!</p><p style="font-size: 16px; text-align: left;">Eu também irei participar obiviamente.</p>
                 </div>
                     <div class="carousel-container">
@@ -610,7 +682,7 @@
                     </a>
                     </div>
                      <div class="header fade-up">
-                        <p class="fade-up" style="font-size: 30px;"> Nossos astros são próximos, nos completamos sem nem perceber e isso é incrivel.</p><br><p class="fade-up" style="font-size: 30px;">✨Amor até as estrelas✨</p>
+                        <p class="fade-up" style="font-size: 30px;"> ✨Nossos astros são próximos e se completam bem, nossas dificuldades serão curadas✨ </p>
                     <br>
                     <p class="texto" style="font-size: 14px;color:#667a66;"> ↓ Continue deslizando a página para baixo ↓</p> 
                     </div>
